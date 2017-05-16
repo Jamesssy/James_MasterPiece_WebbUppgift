@@ -20,6 +20,7 @@ namespace James_MasterPiece_WebbUppgift
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            AddEmployeeWithAttributes();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -55,6 +56,27 @@ namespace James_MasterPiece_WebbUppgift
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            
         }
+
+
+
+        //public void AddEmployeeWithAttributes()
+        //{
+
+        //    var empl
+
+
+        //}
+
+
+
+
+
+
+
+
     }
 }

@@ -112,7 +112,7 @@ namespace James_MasterPiece_WebbUppgift
                 EmployedSince = new DateTime(2016, 03, 05),
                 PhoneNr = new PhoneNr { MainPhoneNr = "0708-9667433", AltPhoneNr1 = "876422572" },
                 Salary = new Salary { SalaryPerMonth = 29000 },
-                Address = new Address { Street = "SpindelGatan 155", City = "Gbg", ZipCode = 32145 },
+                Address = new Address { Street = "SpindelGatan 155", City = "Stockholm", ZipCode = 45831 },
                 EmployeeProjects = new List<EmployeeProjects>
                 {
                     new EmployeeProjects
@@ -139,7 +139,7 @@ namespace James_MasterPiece_WebbUppgift
                 EmployedSince = new DateTime(2012, 03, 05),
                 PhoneNr = new PhoneNr { MainPhoneNr = "0708-1247278", AltPhoneNr1 = "129-098743" },
                 Salary = new Salary { SalaryPerMonth = 24000 },
-                Address = new Address { Street = "ImGrumpyGatan 155", City = "Gbg", ZipCode = 32145 },
+                Address = new Address { Street = "ImGrumpyGatan 155", City = "Helsingborg", ZipCode = 32355 },
                 EmployeeProjects = new List<EmployeeProjects>
                 {
                     new EmployeeProjects
@@ -167,7 +167,7 @@ namespace James_MasterPiece_WebbUppgift
                 EmployedSince = new DateTime(2017, 03, 05),
                 PhoneNr = new PhoneNr { MainPhoneNr = "0706-1247278", AltPhoneNr1 = "134-098743" },
                 Salary = new Salary { SalaryPerMonth = 150000 },
-                Address = new Address { Street = "ImNotReallyPoorGatan 1", City = "Gbg", ZipCode = 32145 },
+                Address = new Address { Street = "ImNotReallyPoorGatan 1", City = "Gbg", ZipCode = 32146 },
                
 
             };

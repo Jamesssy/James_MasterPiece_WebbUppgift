@@ -28,15 +28,19 @@
         <div class="form-group">
             <label asp-for="DateOfBirth" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="DateOfBirth" class="form-control" />
+                <input asp-for="DateOfBirth" value="Ex. 1985-11-23" class="form-control"
+                        
+              data-val-required="The Date Of Birth Address field is required."/>
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="EmployedSince" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="EmployedSince" class="form-control" />
-                <span asp-validation-for="EmployedSince" class="text-danger"></span>
+                <input asp-for="EmployedSince" value="Ex. 1985-11-23" class="form-control"
+                       
+              data-val-required="The Employed Since Address field is required."/>
+                <span asp-validation-for="EmployedSince" Value="test" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">

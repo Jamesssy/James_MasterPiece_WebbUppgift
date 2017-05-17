@@ -20,12 +20,60 @@ namespace James_MasterPiece_WebbUppgift.Controllers
         }
 
         // GET: Employees
-        public async Task<IActionResult> Index()
+        public async Task<ViewResult> Index(string sortOrder, string searchString)
+            
         {
             //using (var _context = new MasterPieceContext())
+
+            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "lastName";
+            ViewBag.DateSortParm = sortOrder == "DateOfBirth" ? "DateOfBirth_desc" : "DateOfBirth";
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
+            ViewBag.EmployedDateSortParm = sortOrder == "EmployedSince" ? "EmployedSince_desc" : "EmployedSince";
+
+
+            var employees = from s in _context.Employee
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return View(await _context.Employee.ToListAsync());
+                employees = employees.Where(s => s.LastName.Contains(searchString)
+                                       || s.FirstName.Contains(searchString));
             }
+
+            switch (sortOrder)
+            {
+                case "firstName_desc":
+                    employees = employees.OrderByDescending(s => s.FirstName);
+                    break;
+                case "lastName":
+                    employees = employees.OrderBy(s => s.LastName);
+                    break;
+                case "lastName_desc":
+                    employees = employees.OrderByDescending(s => s.LastName);
+                    break;
+                
+                case "DateOfBirth":
+                    employees = employees.OrderBy(s => s.DateOfBirth);
+                    break;
+                case "DateOfBirth_desc":
+                    employees = employees.OrderByDescending(s => s.DateOfBirth);
+                    break;
+                
+                case "EmployedSince":
+                    employees = employees.OrderBy(s => s.EmployedSince);
+                    break;
+                case "EmployedSince_desc":
+                    employees = employees.OrderByDescending(s => s.EmployedSince);
+                    break;
+                default:
+                    employees = employees.OrderBy(s => s.FirstName);
+                    break;
+            }
+            return View(await employees.ToListAsync());
+            
+
+
+
         }
 
         // GET: Employees/Details/5

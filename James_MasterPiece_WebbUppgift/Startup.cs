@@ -104,8 +104,79 @@ namespace James_MasterPiece_WebbUppgift
                 },
 
             };
+            var employee2 = new Employee
+            {
+                FirstName = "Peter",
+                LastName = "Parker",
+                DateOfBirth = new DateTime(1991, 11, 23),
+                EmployedSince = new DateTime(2016, 03, 05),
+                PhoneNr = new PhoneNr { MainPhoneNr = "0708-9667433", AltPhoneNr1 = "876422572" },
+                Salary = new Salary { SalaryPerMonth = 29000 },
+                Address = new Address { Street = "SpindelGatan 155", City = "Gbg", ZipCode = 32145 },
+                EmployeeProjects = new List<EmployeeProjects>
+                {
+                    new EmployeeProjects
+                    {
+                        Project = new Project
+                        {
+                            Name = "Web Shooters",
+                            Description = "Webbkurs uppgift",
+                            ProjectNo = 234,
+                            GoalCompletionDate = new DateTime(2019,10,02),
+                            Status = Status.Unstarted
+                        }
+                    },
+
+                },
+
+            };
+
+            var employee3 = new Employee
+            {
+                FirstName = "Doctor",
+                LastName = "Octopuss",
+                DateOfBirth = new DateTime(1975, 11, 23),
+                EmployedSince = new DateTime(2012, 03, 05),
+                PhoneNr = new PhoneNr { MainPhoneNr = "0708-1247278", AltPhoneNr1 = "129-098743" },
+                Salary = new Salary { SalaryPerMonth = 24000 },
+                Address = new Address { Street = "ImGrumpyGatan 155", City = "Gbg", ZipCode = 32145 },
+                EmployeeProjects = new List<EmployeeProjects>
+                {
+                    new EmployeeProjects
+                    {
+                        Project = new Project
+                        {
+                            Name = "How to kill a spider",
+                            Description = "Webbkurs uppgift",
+                            ProjectNo = 1337,
+                            GoalCompletionDate = new DateTime(2017,10,02),
+                            Status = Status.Unstarted
+                        }
+                    },
+
+                },
+
+            };
+
+
+            var employee4 = new Employee
+            {
+                FirstName = "Harry",
+                LastName = "Osborn",
+                DateOfBirth = new DateTime(1991, 06, 15),
+                EmployedSince = new DateTime(2017, 03, 05),
+                PhoneNr = new PhoneNr { MainPhoneNr = "0706-1247278", AltPhoneNr1 = "134-098743" },
+                Salary = new Salary { SalaryPerMonth = 150000 },
+                Address = new Address { Street = "ImNotReallyPoorGatan 1", City = "Gbg", ZipCode = 32145 },
+               
+
+            };
+
 
             context.Employee.Add(employee);
+            context.Employee.Add(employee2);
+            context.Employee.Add(employee3);
+            context.Employee.Add(employee4);
             context.SaveChanges();
 
         }

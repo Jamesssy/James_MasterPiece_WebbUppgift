@@ -21,13 +21,16 @@ namespace JMP_WU_Domain
         [Required]
         public string LastName { get; set; }
 
-        
+
         //[RegularExpression(@"^\d{4}-((0[1-9])|(1[012]))-((0[1-9]|[12]\d)|3[01])$", ErrorMessage = "Bust be in format ex. 1985-11-24")]
+        [DataType(DataType.Date, ErrorMessage = "This is not a valid date format. Pls enter in this format ex.  1973-02-31 ")]
         [Required]
+        
         public DateTime DateOfBirth { get; set; }
 
         //[RegularExpression(@"^\d{4}-((0[1-9])|(1[012]))-((0[1-9]|[12]\d)|3[01])$", ErrorMessage = "Bust be in format ex. 1985-11-24")]
         [Required]
+        [DataType(DataType.Date, ErrorMessage = "This is not a valid date format. Pls enter in this format ex. 1973-02-31 ")]
         public DateTime EmployedSince { get; set; }
 
         public virtual PhoneNr PhoneNr { get; set; }

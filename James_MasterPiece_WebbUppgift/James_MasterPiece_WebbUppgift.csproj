@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\**" />
     <Compile Remove="Views\Addresses2\**" />
+    <Content Remove="Model\**" />
     <Content Remove="Views\Addresses2\**" />
+    <EmbeddedResource Remove="Model\**" />
     <EmbeddedResource Remove="Views\Addresses2\**" />
+    <None Remove="Model\**" />
     <None Remove="Views\Addresses2\**" />
   </ItemGroup>
 
@@ -37,9 +41,6 @@
   <ItemGroup>
     <ProjectReference Include="..\JMP_WU_Data\JMP_WU_Data.csproj" />
     <ProjectReference Include="..\JMP_WU_Domain\JMP_WU_Domain.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>

@@ -41,8 +41,8 @@ namespace James_MasterPiece_WebbUppgift.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                address = address.Where(s => s.ZipCode.ToString().Contains(searchString)
-                                       || s.Street.Contains(searchString)
+               
+                address = address.Where(s =>  s.Street.Contains(searchString)
                                        || s.City.Contains(searchString)
                                        || s.Employee.LastName.Contains(searchString)
                                        || s.Employee.FirstName.Contains(searchString));

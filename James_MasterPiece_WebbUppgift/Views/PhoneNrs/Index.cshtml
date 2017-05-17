@@ -9,20 +9,27 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Search: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MainPhoneNr)
+                    @Html.ActionLink("Main Phonenumber", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AltPhoneNr1)
+                    @Html.ActionLink("Alternative Phonenumber 1", "Index", new { sortOrder = ViewBag.Alt1PhoneNrSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AltPhoneNr2)
+                    @Html.ActionLink("Alternative Phonenumber 2", "Index", new { sortOrder = ViewBag.Alt2PhoneNrSortParm })
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee)
+                @Html.ActionLink("Employee", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th></th>
         </tr>

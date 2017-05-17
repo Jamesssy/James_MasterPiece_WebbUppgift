@@ -19,12 +19,71 @@ namespace James_MasterPiece_WebbUppgift.Controllers
             _context = new MasterPieceContext();
         }
 
-        // GET: PhoneNrs
-        public async Task<IActionResult> Index()
+        public async Task<ViewResult> Index(string sortOrder, string searchString)
+
         {
-            var masterPieceContext = _context.PhoneNr.Include(p => p.Employee);
-            return View(await masterPieceContext.ToListAsync());
+            var phoneNr = _context.PhoneNr.Select(s => s).Include(a => a.Employee).Select(a => a);
+            
+            //using (var _context = new MasterPieceContext())
+
+            ViewBag.MainPhoneNrSortParm = sortOrder == "mainPhoneNr" ? "mainPhoneNr_desc" : "mainPhoneNr";
+            ViewBag.Alt1PhoneNrSortParm = sortOrder == "alt1PhoneNr" ? "alt1PhoneNr_desc" : "alt1PhoneNr";
+            ViewBag.Alt1PhoneNrSortParm = sortOrder == "alt2PhoneNr" ? "alt2PhoneNr_desc" : "alt2PhoneNr";
+           
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
+
+
+            
+
+            //SqlFunctions.StringConvert
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //var newSearchString = searchString.Trim(new char[] { ' ', '-' });
+
+                phoneNr = phoneNr.Where(s => s.MainPhoneNr.Contains(searchString)
+                                       || s.AltPhoneNr1.Contains(searchString)
+                                       || s.AltPhoneNr2.Contains(searchString)
+                                       || s.Employee.FirstName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "firstName_desc":
+                    phoneNr = phoneNr.OrderByDescending(s => s.Employee.FirstName);
+                    break;
+
+
+                case "mainPhoneNr":
+                    phoneNr = phoneNr.OrderBy(s => s.MainPhoneNr);
+                    break;
+                case "mainPhoneNr_desc":
+                    phoneNr = phoneNr.OrderByDescending(s => s.MainPhoneNr);
+                    break;
+
+                case "alt1PhoneNr":
+                    phoneNr = phoneNr.OrderBy(s => s.AltPhoneNr1);
+                    break;
+                case "alt1PhoneNr_desc":
+                    phoneNr = phoneNr.OrderByDescending(s => s.AltPhoneNr1);
+                    break;
+                case "alt2PhoneNr":
+                    phoneNr = phoneNr.OrderBy(s => s.AltPhoneNr2);
+                    break;
+                case "alt2PhoneNr_desc":
+                    phoneNr = phoneNr.OrderByDescending(s => s.AltPhoneNr2);
+                    break;
+                default:
+                    phoneNr = phoneNr.OrderBy(s => s.Employee.FirstName);
+                    break;
+            }
+            
+            return View(await phoneNr.ToListAsync());
+            
+            
         }
+        
+    
 
         // GET: PhoneNrs/Details/5
         public async Task<IActionResult> Details(int? id)

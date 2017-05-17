@@ -19,12 +19,55 @@ namespace James_MasterPiece_WebbUppgift.Controllers
             _context = new MasterPieceContext();
         }
 
-        // GET: Salaries
-        public async Task<IActionResult> Index()
+        public async Task<ViewResult> Index(string sortOrder, string searchString)
+
         {
-            var masterPieceContext = _context.Salary.Include(s => s.Employee);
-            return View(await masterPieceContext.ToListAsync());
+            var salaries = _context.Salary.Select(s => s).Include(a => a.Employee).Select(a => a);
+
+            //using (var _context = new MasterPieceContext())
+
+            ViewBag.SalarySortParm = sortOrder == "salary" ? "salary_desc" : "salary";
+            
+
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
+
+
+
+
+            //SqlFunctions.StringConvert
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //var newSearchString = searchString.Trim(new char[] { ' ', '-' });
+
+                salaries = salaries.Where(s => s.Employee.FirstName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "firstName_desc":
+                    salaries = salaries.OrderByDescending(s => s.Employee.FirstName);
+                    break;
+
+
+                case "salary":
+                    salaries = salaries.OrderBy(s => s.SalaryPerMonth);
+                    break;
+                case "salary_desc":
+                    salaries = salaries.OrderByDescending(s => s.SalaryPerMonth);
+                    break;
+
+                default:
+                    salaries = salaries.OrderBy(s => s.Employee.FirstName);
+                    break;
+            }
+
+            
+            
+            return View(await salaries.ToListAsync());
+
         }
+      
 
         // GET: Salaries/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -10,30 +10,39 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ProjectNo)
+                    @Html.ActionLink("Project Number", "Index", new { sortOrder = ViewBag.ProjectNoSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.ActionLink("Project Name", "Index", new { sortOrder = ViewBag.NameSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
+                    @Html.ActionLink("Start Date", "Index", new { sortOrder = ViewBag.StartDateSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.GoalCompletionDate)
+                    @Html.ActionLink("Goal Completion Date", "Index", new { sortOrder = ViewBag.GoalEndDateSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ActualCompletionDate)
+                    @Html.ActionLink("Actual Completion Date", "Index", new { sortOrder = ViewBag.EndDateSortParm })
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Status)
+                    @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
                 </th>
+           
            
             <th></th>
         </tr>
@@ -62,7 +71,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
-            
+           
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

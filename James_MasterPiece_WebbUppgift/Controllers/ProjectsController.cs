@@ -19,11 +19,84 @@ namespace James_MasterPiece_WebbUppgift.Controllers
             _context = new MasterPieceContext();
         }
 
-        // GET: Projects
-        public async Task<IActionResult> Index()
+
+        public async Task<ViewResult> Index(string sortOrder, string searchString)
+
         {
-            return View(await _context.Project.ToListAsync());
+            var projects = _context.Project.Select(s => s);
+            //a => a.EmployeeProjects.Select(e => e.Employee.FirstName)).Select(a => a);
+
+            //using (var _context = new MasterPieceContext())
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.StartDateSortParm = sortOrder == "StartDate" ? "StartDate_desc" : "StartDate";
+            ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "EndDate_desc" : "EndDate";
+            ViewBag.GoalEndDateSortParm = sortOrder == "GoalEndDate" ? "GoalEndDate_desc" : "GoalEndDate";
+            ViewBag.ProjectNoSortParm = sortOrder == "ProjectNo" ? "ProjectNo_desc" : "ProjectNo";
+            
+            
+            //ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "lastName";
+
+        //     public int Id { get; set; }
+        //public int ProjectNo { get; set; }
+        //public string Name { get; set; }
+        //public string Description { get; set; }
+        //public DateTime? StartDate { get; set; }
+        //public DateTime? GoalCompletionDate { get; set; }
+        //public DateTime? ActualCompletionDate { get; set; }
+        //public Status? Status { get; set; } = 0;
+
+            //SqlFunctions.StringConvert
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                projects = projects.Where(s => s.Name.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "firstName_desc":
+                    projects = projects.OrderByDescending(s => s.EmployeeProjects.Select(e => e.Employee.FirstName));
+                    break;
+
+
+                case "name":
+                    projects = projects.OrderBy(s => s.Name);
+                    break;
+                case "name_desc":
+                    projects = projects.OrderByDescending(s => s.ProjectNo);
+                    break;
+                case "ProjectNo":
+                    projects = projects.OrderBy(s => s.ProjectNo);
+                    break;
+                case "ProjectNo_desc":
+                    projects = projects.OrderByDescending(s => s.ProjectNo);
+                    break;
+                case "StartDate":
+                    projects = projects.OrderBy(s => s.StartDate);
+                    break;
+                case "StartDate_desc":
+                    projects = projects.OrderByDescending(s => s.StartDate);
+                    break;
+                case "EndDate":
+                    projects = projects.OrderBy(s => s.ActualCompletionDate);
+                    break;
+                case "EndDate_desc":
+                    projects = projects.OrderByDescending(s => s.ActualCompletionDate);
+                    break;
+                default:
+                    projects = projects.OrderBy(s => s.Name);
+                    break;
+            }
+
+            return View(await projects.ToListAsync());
+
+            
+
+
         }
+    
 
         // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)

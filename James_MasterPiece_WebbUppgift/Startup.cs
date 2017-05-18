@@ -22,8 +22,8 @@ namespace James_MasterPiece_WebbUppgift
 
         public Startup(IHostingEnvironment env)
         {
-            //ClearDatabase();
-            //AddEmployeeWithAttributes();
+            ClearDatabase();
+            AddEmployeeWithAttributes();
 
 
             var builder = new ConfigurationBuilder()

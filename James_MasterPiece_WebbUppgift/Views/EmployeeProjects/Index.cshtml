@@ -9,14 +9,23 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Employee)
+                @Html.ActionLink("Employee", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Project)
+                @Html.ActionLink("Project Name", "Index", new { sortOrder = ViewBag.ProjectNameSortParm })
             </th>
             <th></th>
         </tr>
@@ -31,9 +40,9 @@
                 @Html.DisplayFor(modelItem => item.Project.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @*@Html.ActionLink("Edit", "Edit", new { EmployeeId = item.EmployeeId, ProjectId = item.ProjectId }) |
+                @Html.ActionLink("Details", "Details", new { EmployeeId = item.EmployeeId, ProjectId = item.ProjectId }) |
+                @Html.ActionLink("Delete", "Delete", new { EmployeeId = item.EmployeeId, ProjectId = item.ProjectId })*@
             </td>
         </tr>
 }

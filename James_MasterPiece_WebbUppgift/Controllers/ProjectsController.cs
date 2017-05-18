@@ -24,9 +24,7 @@ namespace James_MasterPiece_WebbUppgift.Controllers
 
         {
             var projects = _context.Project.Select(s => s);
-            //a => a.EmployeeProjects.Select(e => e.Employee.FirstName)).Select(a => a);
-
-            //using (var _context = new MasterPieceContext())
+            
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.StartDateSortParm = sortOrder == "StartDate" ? "StartDate_desc" : "StartDate";
@@ -35,18 +33,8 @@ namespace James_MasterPiece_WebbUppgift.Controllers
             ViewBag.ProjectNoSortParm = sortOrder == "ProjectNo" ? "ProjectNo_desc" : "ProjectNo";
             
             
-            //ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "lastName";
+      
 
-        //     public int Id { get; set; }
-        //public int ProjectNo { get; set; }
-        //public string Name { get; set; }
-        //public string Description { get; set; }
-        //public DateTime? StartDate { get; set; }
-        //public DateTime? GoalCompletionDate { get; set; }
-        //public DateTime? ActualCompletionDate { get; set; }
-        //public Status? Status { get; set; } = 0;
-
-            //SqlFunctions.StringConvert
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -119,6 +107,7 @@ namespace James_MasterPiece_WebbUppgift.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
+
             return View();
         }
 

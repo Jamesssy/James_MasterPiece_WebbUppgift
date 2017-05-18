@@ -170,6 +170,11 @@ namespace James_MasterPiece_WebbUppgift.Controllers
         // GET: Employees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            //Support support = db.Support.Find(id);
+            //support.Servers.Clear();
+            //db.Support.Remove(support);
+            //db.SaveChanges();
+
             if (id == null)
             {
                 return NotFound();

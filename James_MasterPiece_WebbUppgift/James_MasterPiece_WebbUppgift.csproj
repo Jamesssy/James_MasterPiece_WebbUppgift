@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\Addresses2Controller.cs" />
+    <Compile Remove="Controllers\ProjectScheduleController1.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

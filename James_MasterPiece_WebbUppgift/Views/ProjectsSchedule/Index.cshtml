@@ -1,0 +1,275 @@
+@model IEnumerable<JMP_WU_Domain.Project>
+
+<style>
+    td {
+        padding: 10px;
+        border: solid 1px
+    }
+</style>
+
+
+<table>
+
+    <tr>
+        <td></td>
+        @for (var i = 1; i <= 12; i++)
+        {
+
+            <td>@i</td>
+        }
+
+    </tr>
+
+    @foreach (var project in Model)
+    {
+
+        <tr>
+            <td>@project.Name</td>
+            @{
+                var startYear = project.StartDate.Value.Year;
+                var endYear = project.GoalCompletionDate.Value.Year;
+                var startMonth = project.StartDate.Value.Month;
+                var endMonth = project.GoalCompletionDate.Value.Month;
+            }
+
+            @if (startYear == endYear)
+            {
+                @startYear
+
+
+                @for (var i = 1; i <= 12; i++)
+                {
+                    if (i < startMonth || i > endMonth)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>x</td>
+                    }
+
+                }
+            }
+
+            @if ((startYear < endYear) && startYear == 2017)
+            {
+                @for (var i = 1; i <= 12; i++)
+                {
+                    if (i < startMonth)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>x</td>
+                    }
+
+                }
+            }
+
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+                }
+
+
+</table>
+
+<table>
+
+    <tr>
+        <td>2018</td>
+        @for (var i = 1; i <= 12; i++)
+        {
+
+            <td>@i</td>
+        }
+
+    </tr>
+
+    @foreach (var project in Model)
+    {
+
+        <tr>
+            <td>@project.Name</td>
+            @{
+                var startYear = project.StartDate.Value.Year;
+                var endYear = project.GoalCompletionDate.Value.Year;
+                var startMonth = project.StartDate.Value.Month;
+                var endMonth = project.GoalCompletionDate.Value.Month;
+            }
+
+
+
+            @if (startYear == 2018)
+            {
+
+                @for (var i = 1; i <= 12; i++)
+                {
+                    if (i < startMonth)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>x</td>
+                    }
+
+                }
+            }
+
+
+            @if (startYear < endYear) { 
+            @for (var i = 1; i <= 12; i++)
+            {
+                if (i < endMonth)
+                {
+                    <td>x</td>
+                }
+                else
+                {
+                    <td></td>
+                    }
+
+                }
+                }
+
+
+            @*@if ((endYear - startYear) == 2)
+            {
+                @for (var i = 1; i <= 12; i++)
+                {
+                    
+                    <td>x</td>
+                    
+                }
+            }*@
+
+
+
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+                }
+
+
+</table>
+
+
+
+
+
+@*<table>
+
+        <tr>
+            <td></td>
+            @for (var i = 1; i <= 12; i++)
+            {
+
+                <td>@i</td>
+            }
+
+        </tr>
+
+        @foreach (var project in Model)
+        {
+
+            <tr>
+                <td>@project.Name</td>
+                @{
+                    var startYear = project.StartDate.Value.Year;
+                    var endYear = project.GoalCompletionDate.Value.Year;
+                    var startMonth = project.StartDate.Value.Month;
+                    var endMonth = project.GoalCompletionDate.Value.Month;
+                }
+
+
+
+                @if ((endYear - startYear) == 1)
+                {
+                    @endYear
+
+
+                    @for (var i = 1; i <= 12; i++)
+                    {
+                        if ( i < endMonth)
+                        {
+                            <td>x</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+                    }
+                }
+
+                @if ((endYear - startYear) == 2)
+                {
+                    @for (var i = 1; i <= 12; i++)
+                    {
+
+
+                        <td>x</td>
+
+
+                    }
+                }
+
+
+
+
+
+
+
+
+
+            </tr>
+
+
+
+
+
+                    }
+
+
+    </table>*@
+
+
+
+
+
+
+<hr />
+
+@for (int i = 1; i <= 12; i++)
+{
+    <p>M&aring;nad @i</p>
+}
+
+<hr />
+
+@foreach (var item in Model)
+{
+    <p>Projektnamn: @item.Name</p>
+    <p>StartDate: @item.StartDate</p>
+    <p>GoalCompletionDate: @item.GoalCompletionDate</p>
+}

@@ -1,177 +1,292 @@
 @model IEnumerable<JMP_WU_Domain.Project>
 
-<style>
+
+
+
+<style type="text/css">
     td {
-        padding: 10px;
-        border: solid 1px
+        width: 20px;
     }
+
+    .White {
+        background-color: white;
+        text-align: center;
+    }
+
+    .Finished {
+        background-color: lime;
+        text-align: center;
+    }
+
+    .Unstarted {
+        background-color: red;
+        text-align: center;
+    }
+
+    .Started {
+        background-color: yellow;
+        text-align: center;
+    }
+
+    td {
+        min-height: 40px;
+        border: 1px solid lightgrey;
+    }
+
+    .Center {
+        text-align: center
+    }
+
+    .Year {
+        text-align: center;
+        font-weight: bolder;
+        font-size: larger
+    }
+
+    .Bold {
+        font-weight: bold;
+        color: grey;
+    }
+    
 </style>
-
-
-<table>
-
+@{
+    var Year = @DateTime.Now.Year;
+    var YearMinusTwo = @DateTime.Now.AddYears(-2).Year;
+    var YearPlusTen = @DateTime.Now.AddYears(+10).Year;
+}
+<table width="100%">
     <tr>
-        <td></td>
-        @for (var i = 1; i <= 12; i++)
-        {
-
-            <td>@i</td>
-        }
-
+        <td class="Unstarted">Unstarted</td>
     </tr>
-
-    @foreach (var project in Model)
-    {
-
-        <tr>
-            <td>@project.Name</td>
-            @{
-                var startYear = project.StartDate.Value.Year;
-                var endYear = project.GoalCompletionDate.Value.Year;
-                var startMonth = project.StartDate.Value.Month;
-                var endMonth = project.GoalCompletionDate.Value.Month;
-            }
-
-            @if (startYear == endYear)
-            {
-                @startYear
-
-
-                @for (var i = 1; i <= 12; i++)
-                {
-                    if (i < startMonth || i > endMonth)
-                    {
-                        <td></td>
-                    }
-                    else
-                    {
-                        <td>x</td>
-                    }
-
-                }
-            }
-
-            @if ((startYear < endYear) && startYear == 2017)
-            {
-                @for (var i = 1; i <= 12; i++)
-                {
-                    if (i < startMonth)
-                    {
-                        <td></td>
-                    }
-                    else
-                    {
-                        <td>x</td>
-                    }
-
-                }
-            }
-
-
-
-
-
-
-
-        </tr>
-
-
-
-
-
-                }
-
-
+    <tr>
+        <td class="Started">Started</td>
+    </tr>
+    <tr>
+        <td class="Finished">Finished</td>
+    </tr>
 </table>
 
-<table>
 
-    <tr>
-        <td>2018</td>
-        @for (var i = 1; i <= 12; i++)
-        {
 
-            <td>@i</td>
-        }
 
-    </tr>
+@for (var year = YearMinusTwo; year <= YearPlusTen; year++)
+{
+    bool projectExistInThisYear = false;
+    bool projectNameExistInThisYear = false;
 
+
+    // Sätt projectExistInThisYear till true eller false
     @foreach (var project in Model)
     {
+        if(project.StartDate.Value.Year == year || project.GoalCompletionDate.Value.Year >= year)
+        {
+            projectExistInThisYear = true;
 
-        <tr>
-            <td>@project.Name</td>
-            @{
-                var startYear = project.StartDate.Value.Year;
-                var endYear = project.GoalCompletionDate.Value.Year;
-                var startMonth = project.StartDate.Value.Month;
-                var endMonth = project.GoalCompletionDate.Value.Month;
-            }
+        }
+    }
 
+@*bool projectExistInThisYear = false;
+var currentCellDates = new DateTime(year, 01, 01);
 
+// Sätt projectExistInThisYear till true eller false
+@foreach (var project in Model)
+                {<tr>
+        @{
 
-            @if (startYear == 2018)
-            {
+            var startDates = project.StartDate;
+            var endDates = project.GoalCompletionDate;
+        }
+    </tr>
 
-                @for (var i = 1; i <= 12; i++)
+                if (currentCellDates >= startDates || currentCellDates <= endDates)
                 {
-                    if (i < startMonth)
-                    {
-                        <td></td>
-                    }
-                    else
-                    {
-                        <td>x</td>
-                    }
+                    projectExistInThisYear = true;
 
-                }
-            }
-
-
-            @if (startYear < endYear) { 
-            @for (var i = 1; i <= 12; i++)
-            {
-                if (i < endMonth)
-                {
-                    <td>x</td>
-                }
-                else
-                {
-                    <td></td>
-                    }
-
-                }
-                }
-
-
-            @*@if ((endYear - startYear) == 2)
-            {
-                @for (var i = 1; i <= 12; i++)
-                {
-                    
-                    <td>x</td>
-                    
                 }
             }*@
 
 
+    @if (projectExistInThisYear)
+    {
+        <table width="100%">
+
+            <tr>
+                <td class="Year">@year</td>
+                @for (var i = 1; i <= 12; i++)
+                {
+
+                    <td class="Center">@i</td>
+                }
+                
+            </tr>
+            
+            @foreach (var project in Model)
+            {
 
 
 
+                // Sätt projectExistInThisYear till true eller false
 
-
-
-
-        </tr>
-
-
-
-
+                if (project.StartDate.Value.Year == year || project.GoalCompletionDate.Value.Year >= year)
+                {
+                    projectNameExistInThisYear = true;
 
                 }
 
+                if (projectNameExistInThisYear == true) { 
+                <tr>
+                    <td class="Bold">@project.Name</td>
+                    @{
+                        var startYear = project.StartDate.Value.Year;
+                        var endYear = project.GoalCompletionDate.Value.Year;
+                        var startMonth = project.StartDate.Value.Month;
+                        var endMonth = project.GoalCompletionDate.Value.Month;
+                        var startDate = project.StartDate;
+                        var endDate = project.GoalCompletionDate;
+                    }
 
-</table>
+
+
+                    @for (var i = 1; i <= 12; i++)
+                    {
+
+                        var currentCellDate = new DateTime(year, i, 01);
+                        // Skapa en ny variabel "currentCellDate". Värdet beror på "i" och "year". Ex 2017-03-01
+
+                        // if: kolla om currentCellDate är inom project.StartDate => project.EndDate
+
+
+
+                        if (currentCellDate >= startDate && currentCellDate <= endDate)
+                        {
+                            <td class="@project.Status"></td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+                        @*if ((i < startMonth || i > endMonth) && year != startYear )
+                            {
+                            <td></td>
+                            }
+                            else
+                            {
+                                <td>x</td>
+                            }*@
+
+                    }
+
+
+                    @*@if ((startYear < endYear) && startYear == year)
+                        {
+                            @for (var i = 1; i <= 12; i++)
+                            {
+                                if (i < startMonth)
+                                {
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td>x</td>
+                                }
+
+                            }
+                        }*@
+
+                </tr>
+
+
+
+                            }
+
+                        }
+
+            <hr />
+
+
+        </table>
+                        }
+                        }
+
+@*<table>
+
+        <tr>
+            <td>2018</td>
+            @for (var i = 1; i <= 12; i++)
+            {
+
+                <td>@i</td>
+            }
+
+        </tr>
+
+        @foreach (var project in Model)
+        {
+
+            <tr>
+                <td>@project.Name</td>
+                @{
+                    var startYear = project.StartDate.Value.Year;
+                    var endYear = project.GoalCompletionDate.Value.Year;
+                    var startMonth = project.StartDate.Value.Month;
+                    var endMonth = project.GoalCompletionDate.Value.Month;
+                }
+
+
+
+                @if (startYear == 2018)
+                {
+
+                    @for (var i = 1; i <= 12; i++)
+                    {
+                        if (i < startMonth)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>x</td>
+                        }
+
+                    }
+                }
+
+
+                @if (startYear < endYear) {
+                @for (var i = 1; i <= 12; i++)
+                {
+                    if (i < endMonth)
+                    {
+                        <td>x</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        }
+
+                    }
+                    }
+
+
+
+
+
+
+
+
+
+
+            </tr>
+
+
+
+
+
+                    }
+
+
+    </table>*@
 
 
 
@@ -258,18 +373,19 @@
 
 
 
-<hr />
+@*<hr />*@
 
-@for (int i = 1; i <= 12; i++)
-{
-    <p>M&aring;nad @i</p>
-}
+@*@for (int i = 1; i <= 12; i++)
+    {
+        <p>M&aring;nad @i</p>
+    }*@
 
 <hr />
 
 @foreach (var item in Model)
 {
     <p>Projektnamn: @item.Name</p>
-    <p>StartDate: @item.StartDate</p>
-    <p>GoalCompletionDate: @item.GoalCompletionDate</p>
+        <p>StartDate: @item.StartDate</p>
+        <p>GoalCompletionDate: @item.GoalCompletionDate</p>
+        <hr />
 }

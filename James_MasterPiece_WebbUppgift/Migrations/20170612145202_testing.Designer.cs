@@ -8,9 +8,10 @@ using James_MasterPiece_WebbUppgift.Context;
 namespace James_MasterPiece_WebbUppgift.Migrations
 {
     [DbContext(typeof(MasterPieceContext))]
-    partial class MasterPieceContextModelSnapshot : ModelSnapshot
+    [Migration("20170612145202_testing")]
+    partial class testing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

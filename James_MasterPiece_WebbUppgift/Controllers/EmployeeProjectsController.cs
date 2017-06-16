@@ -14,9 +14,9 @@ namespace James_MasterPiece_WebbUppgift.Controllers
     {
         private readonly MasterPieceContext _context;
 
-        public EmployeeProjectsController()
+        public EmployeeProjectsController(MasterPieceContext context)
         {
-            _context = new MasterPieceContext();
+            _context = context;
         }
 
         // GET: EmployeeProjects

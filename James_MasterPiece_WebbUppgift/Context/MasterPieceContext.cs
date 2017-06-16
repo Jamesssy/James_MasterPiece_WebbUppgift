@@ -16,13 +16,19 @@ namespace James_MasterPiece_WebbUppgift.Context
         public DbSet<Project> Project { get; set; }
         public DbSet<Salary> Salary { get; set; }
 
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public MasterPieceContext(DbContextOptions<MasterPieceContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(
-             "Server = (localdb)\\mssqllocaldb; Database = JMP_WebbUppgift; Trusted_Connection = True; ");
+
         }
+
+     
+
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //     "Server = (localdb)\\mssqllocaldb; Database = TEST_JMP_WebbUppgift; Trusted_Connection = True; ");
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

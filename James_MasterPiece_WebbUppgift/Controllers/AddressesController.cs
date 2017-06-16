@@ -16,9 +16,9 @@ namespace James_MasterPiece_WebbUppgift.Controllers
     {
         private readonly MasterPieceContext _context;
 
-        public AddressesController()
+        public AddressesController(MasterPieceContext context)
         {
-            _context = new MasterPieceContext();
+            _context = context;
         }
 
         // GET: Addresses

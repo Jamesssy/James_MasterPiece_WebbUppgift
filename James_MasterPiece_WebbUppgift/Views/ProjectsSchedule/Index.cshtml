@@ -69,16 +69,16 @@
 
 
 
-@for (var year = YearMinusTwo; year <= YearPlusTen; year++)
+@for (var year = YearMinusTwo-2; year <= YearPlusTen; year++)
 {
     bool projectExistInThisYear = false;
-    bool projectNameExistInThisYear = false;
+   
 
 
     // Sätt projectExistInThisYear till true eller false
     @foreach (var project in Model)
     {
-        if(project.StartDate.Value.Year == year || project.GoalCompletionDate.Value.Year >= year)
+        if(project.StartDate.Value.Year <= year && project.GoalCompletionDate.Value.Year >= year)
         {
             projectExistInThisYear = true;
 
@@ -124,16 +124,18 @@ var currentCellDates = new DateTime(year, 01, 01);
             {
 
 
-
+                bool projectNameExistInThisYear = false;
                 // Sätt projectExistInThisYear till true eller false
 
-                if (project.StartDate.Value.Year == year || project.GoalCompletionDate.Value.Year >= year)
+
+
+                if (project.StartDate.Value.Year <= year && project.GoalCompletionDate.Value.Year >= year)
                 {
                     projectNameExistInThisYear = true;
 
                 }
 
-                if (projectNameExistInThisYear == true) { 
+                if (projectNameExistInThisYear == true) {
                 <tr>
                     <td class="Bold">@project.Name</td>
                     @{

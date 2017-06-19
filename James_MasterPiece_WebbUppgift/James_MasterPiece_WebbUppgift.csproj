@@ -44,7 +44,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JMP_WU_Data\JMP_WU_Data.csproj" />
     <ProjectReference Include="..\JMP_WU_Domain\JMP_WU_Domain.csproj" />
   </ItemGroup>
   <ItemGroup>

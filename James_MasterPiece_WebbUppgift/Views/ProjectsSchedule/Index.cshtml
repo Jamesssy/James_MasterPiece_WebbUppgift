@@ -14,18 +14,21 @@
     }
 
     .Finished {
-        background-color: lime;
+        background-color: limegreen;
         text-align: center;
+        font-weight: bold;
     }
 
     .Unstarted {
         background-color: red;
         text-align: center;
+        font-weight: bold;
     }
 
     .Started {
         background-color: yellow;
         text-align: center;
+        font-weight: bold;
     }
 
     td {
@@ -54,7 +57,8 @@
     var YearMinusTwo = @DateTime.Now.AddYears(-2).Year;
     var YearPlusTen = @DateTime.Now.AddYears(+10).Year;
 }
-<table width="100%">
+<br />
+<table width="10%">
     <tr>
         <td class="Unstarted">Unstarted</td>
     </tr>
@@ -168,6 +172,14 @@ var currentCellDates = new DateTime(year, 01, 01);
                         {
                             <td></td>
                         }
+
+
+
+
+
+
+
+
 
                         @*if ((i < startMonth || i > endMonth) && year != startYear )
                             {
@@ -387,8 +399,9 @@ var currentCellDates = new DateTime(year, 01, 01);
 
 @foreach (var item in Model)
 {
-    <p>Projektnamn: @item.Name</p>
-        <p>StartDate: @item.StartDate</p>
+   
+        <p>Projektnamn: @item.Name</p>
+        <p>StartDate: @item.StartDate.Value.Date</p>
         <p>GoalCompletionDate: @item.GoalCompletionDate</p>
         <hr />
 }

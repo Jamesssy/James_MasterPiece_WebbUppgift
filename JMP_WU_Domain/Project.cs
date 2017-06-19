@@ -16,9 +16,11 @@ namespace JMP_WU_Domain
         [StringLength(500, MinimumLength = 2, ErrorMessage = "Must be between 2 and 500 letters.")]
         public string Description { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date, ErrorMessage = "This is not a valid date format. Pls enter in this format ex. 1973-02-31 ")]
         public DateTime? StartDate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date, ErrorMessage = "This is not a valid date format. Pls enter in this format ex. 1973-02-31 ")]
         public DateTime? GoalCompletionDate { get; set; }
 

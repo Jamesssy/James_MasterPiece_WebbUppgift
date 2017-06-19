@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using JMP_WU_Domain;
+using James_MasterPiece_WebbUppgift.ViewModels;
 
 namespace James_MasterPiece_WebbUppgift.Context
 {
@@ -15,14 +16,20 @@ namespace James_MasterPiece_WebbUppgift.Context
         public DbSet<PhoneNr> PhoneNr { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<Salary> Salary { get; set; }
-
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        
+        public MasterPieceContext(DbContextOptions<MasterPieceContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(
-             "Server = (localdb)\\mssqllocaldb; Database = JMP_WebbUppgift; Trusted_Connection = True; ");
+
         }
+
+     
+
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //     "Server = (localdb)\\mssqllocaldb; Database = TEST_JMP_WebbUppgift; Trusted_Connection = True; ");
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

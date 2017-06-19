@@ -1,4 +1,4 @@
-@model JMP_WU_Domain.EmployeeProjects
+@model James_MasterPiece_WebbUppgift.ViewModels.EmployeeProjectsViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -13,61 +13,40 @@
         <h4>EmployeeProjects</h4>
         <hr />
 
-
-
-
-
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.EmployeeId, "EmployeeId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("EmployeeId", String.Empty)
+                //@Html.DropDownList("EmployeeId", String.Empty)
                 @Html.ValidationMessageFor(model => model.EmployeeId)
-            </div>
-
+            </div>*@
+        <input type="hidden" asp-for="EmployeeId" />
+        <input type="hidden" asp-for="ProjectId" />
+        <dl class="dl-horizontal">
+           
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Employee.FirstName)
+            </dd>
             <div class="form-group">
-                @Html.LabelFor(model => model.ProjectId, "ProjectId", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ProjectId, "Project Name", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("ProjectId", String.Empty)
+                    @*@Html.DropDownListFor(m => m.AllProjects, m => m.AllProjects)*@
+                    @Html.DropDownList("SelectedProjects", Model.AllProjects)
+
+
                     @Html.ValidationMessageFor(model => model.ProjectId)
                 </div>
+                </dl>
 
 
 
-                @*<div class="form-group">
-                <label asp-for="EmployeeId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
-                </div>
-            </div>*@
-
-
-
-
-                @*<div class="form-group">
-                    <label asp-for="ProjectId" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.ProjectId"></select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>*@
-                @*</form>
-
-
-            <form asp-action="Edit">*@
-                @*<div class="form-horizontal">
-            <h4>EmployeeProjects</h4>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-                <input type="hidden" asp-for="EmployeeId" />
-                <input type="hidden" asp-for="ProjectId" />
+               
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Save" class="btn btn-default" />

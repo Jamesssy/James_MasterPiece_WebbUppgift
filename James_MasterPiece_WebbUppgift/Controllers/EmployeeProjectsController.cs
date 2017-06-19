@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JMP_WU_Domain;
 using James_MasterPiece_WebbUppgift.Context;
+using James_MasterPiece_WebbUppgift.ViewModels;
 
 namespace James_MasterPiece_WebbUppgift.Controllers
 {
@@ -14,9 +15,9 @@ namespace James_MasterPiece_WebbUppgift.Controllers
     {
         private readonly MasterPieceContext _context;
 
-        public EmployeeProjectsController()
+        public EmployeeProjectsController(MasterPieceContext context)
         {
-            _context = new MasterPieceContext();
+            _context = context;
         }
 
         // GET: EmployeeProjects
@@ -133,6 +134,17 @@ namespace James_MasterPiece_WebbUppgift.Controllers
                 return NotFound();
             }
 
+            // Hämta alla Project
+
+            var viewmodel = new EmployeeProjectsViewModel();
+
+            viewmodel.AllProjects = _context.Project.Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            }).ToList();
+
+            
             //var employeeProjects = await _context.EmployeeProjects.SingleOrDefaultAsync(m => m.EmployeeId == EmployeeId);
             //if (employeeProjects == null)
             //{
@@ -142,7 +154,7 @@ namespace James_MasterPiece_WebbUppgift.Controllers
             //ViewData["ProjectId"] = new SelectList(_context.Project, "Id", "Id", ep.ProjectId);
             ViewBag.EmployeeId = new SelectList(_context.Employee, "EmployeeId", "FirstName", ep.EmployeeId);
             ViewBag.ProjectId = new SelectList(_context.Project, "ProjectId", "ProjectName", ep.EmployeeId);
-            return View(ep);
+            return View(viewmodel);
         }
 
         // POST: EmployeeProjects/Edit/5

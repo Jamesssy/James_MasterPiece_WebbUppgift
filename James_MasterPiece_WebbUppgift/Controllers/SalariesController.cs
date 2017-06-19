@@ -14,9 +14,9 @@ namespace James_MasterPiece_WebbUppgift.Controllers
     {
         private readonly MasterPieceContext _context;
 
-        public SalariesController()
+        public SalariesController(MasterPieceContext context)
         {
-            _context = new MasterPieceContext();
+            _context = context;
         }
 
         public async Task<ViewResult> Index(string sortOrder, string searchString)

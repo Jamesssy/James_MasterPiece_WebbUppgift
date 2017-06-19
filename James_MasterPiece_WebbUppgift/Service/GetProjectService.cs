@@ -11,13 +11,13 @@ namespace James_MasterPiece_WebbUppgift.Service
     {
 
 
-        public static List<Project> GetAllProjects()
-        {
-            using (var _context = new MasterPieceContext()) {
-                var projects = _context.Project.Select(a => a).ToList();
-                return projects;
-            }
+        //public static List<Project> GetAllProjects()
+        //{
+        //    using (var _context = new MasterPieceContext()) {
+        //        var projects = _context.Project.Select(a => a).ToList();
+        //        return projects;
+        //    }
             
-        }
+        //}
     }
 }

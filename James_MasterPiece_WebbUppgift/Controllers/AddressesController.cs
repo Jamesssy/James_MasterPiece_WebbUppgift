@@ -25,6 +25,7 @@ namespace James_MasterPiece_WebbUppgift.Controllers
         public async Task<ViewResult> Index(string sortOrder, string searchString)
 
         {
+            
             var address = _context.Address.Select(s => s).Include(a => a.Employee).Select(a => a);
 
             //using (var _context = new MasterPieceContext())

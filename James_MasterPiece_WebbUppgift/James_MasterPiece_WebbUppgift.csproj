@@ -23,6 +23,10 @@
     <Compile Remove="Controllers\Addresses2Controller.cs" />
     <Compile Remove="Controllers\ProjectScheduleController1.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\EmployeeProjectTracker - Web Deploy.pubxml" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
@@ -41,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JMP_WU_Domain\JMP_WU_Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

@@ -78,7 +78,7 @@
     // Sätt projectExistInThisYear till true eller false
     @foreach (var project in Model)
     {
-        if(project.StartDate.Value.Year == year || project.GoalCompletionDate.Value.Year >= year)
+        if(project.StartDate.Value.Year <= year && project.GoalCompletionDate.Value.Year >= year)
         {
             projectExistInThisYear = true;
 
@@ -127,7 +127,7 @@ var currentCellDates = new DateTime(year, 01, 01);
 
                 // Sätt projectExistInThisYear till true eller false
 
-                if (project.StartDate.Value.Year == year || project.GoalCompletionDate.Value.Year >= year)
+                if (project.StartDate.Value.Year <= year && project.GoalCompletionDate.Value.Year == year)
                 {
                     projectNameExistInThisYear = true;
 
